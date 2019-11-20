@@ -6,7 +6,7 @@ int main()
     char trans_type;
     while (trans_type != 'E')
     {
-        double amount;
+        double amount,interest_rate;
         int account_number;
         printf("Transaction type?: ");
         scanf(" %c", &trans_type);
@@ -30,13 +30,21 @@ int main()
             deposit(account_number,amount);
             break;
         case 'W':
-            printf("Case W\n");
+            printf("Account number?: ");
+            scanf(" %d",&account_number);
+            printf("Amount?: ");
+            scanf(" %lf",&amount);
+            withdraw(account_number,amount);
             break;
         case 'C':
-            printf("Case C\n");
+            printf("Account number?: ");
+            scanf(" %d",&account_number);
+            close_account(account_number);
             break;
         case 'I':
-            printf("Case I\n");
+            printf("Interest rate?: ");
+            scanf(" %lf",&interest_rate);
+            interest(interest_rate);
             break;
         case 'P':
             print_accounts();
