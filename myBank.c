@@ -86,7 +86,7 @@ void close_account(int account_number)
 
 void interest(double interest_rate) 
 {
-    // interest_rate = interest_rate / 100;
+    interest_rate = interest_rate / 100;
     for(int acc=0;acc<NUM_OF_ACCOUNTS;acc++)
     {
         if(acc_status[acc][ACC_FLAG] == 1) 
