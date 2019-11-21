@@ -2,10 +2,14 @@
 
 
 CC=gcc
+AR=ar
 FLAGS = -Wall -g
 
 
-all: myBank main.o myBank.o
+all: myBank main.o myBank.o libmyBank.a
+
+libmyBank.a: myBank.o
+	$(AR) -rcs libmyBank.a myBank.o
 
 main.o: main.c myBank.h
 	$(CC) $(FLAGS) -c main.c
@@ -19,4 +23,4 @@ myBank: main.o myBank.o
 .PHONY: clean all
 
 clean:
-	rm -f *.o myBank
+	rm -f *.o *.a myBank
