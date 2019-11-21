@@ -96,3 +96,12 @@ void interest(double interest_rate)
     }
     printf("The interest was successfully added!\n");
 }
+
+void exit_prog()
+{
+    for(int acc = 0;acc < NUM_OF_ACCOUNTS;acc++) 
+    {
+        acc_status[acc][ACC_BALANCE] = 0;
+        acc_status[acc][ACC_FLAG] = 0;
+    }
+}

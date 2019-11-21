@@ -5,3 +5,4 @@ void deposit(int account_number,double amount);
 void withdraw(int account_number,double amount);
 void close_account(int account_number);
 void interest(double interest_rate);
+void exit_prog();
