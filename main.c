@@ -9,7 +9,6 @@ void clear()
 
 int main()
 {
-
   char trans_type;
   while (trans_type != 'E')
   {
@@ -21,21 +20,22 @@ int main()
     {
     case 'O':
       printf("Initial deposit?: ");
-      while (scanf(" %lf", &amount) != 1) //check that it is number
+      if(scanf(" %lf", &amount) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
+      amount = set2AfterPoint(amount);
       open_account(amount);
       break;
 
     case 'B':
       printf("Account number?: ");
 
-      while (scanf(" %d", &account_number) != 1) //check that it is number
+      if (scanf(" %d", &account_number) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
       check_balance(account_number);
       break;
@@ -43,49 +43,50 @@ int main()
     case 'D':
       printf("Account number?: ");
 
-      while (scanf(" %d", &account_number) != 1) //check that it is number
+      if (scanf(" %d", &account_number) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
 
       printf("Amount?: ");
 
-      while (scanf(" %lf", &amount) != 1) //check that it is number
+      if (scanf(" %lf", &amount) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
-
+      amount = set2AfterPoint(amount);
       deposit(account_number, amount);
       break;
 
     case 'W':
       printf("Account number?: ");
 
-      while (scanf(" %d", &account_number) != 1) //check that it is number
+      if (scanf(" %d", &account_number) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
 
       printf("Amount?: ");
 
-      while (scanf(" %lf", &amount) != 1) //check that it is number
+      if (scanf(" %lf", &amount) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
-      withdraw(account_number, amount);
+      amount = set2AfterPoint(amount);
+      withdrawl(account_number, amount);
       break;
 
     case 'C':
       printf("Account number?: ");
 
-      while (scanf(" %d", &account_number) != 1) //check that it is number
+      if (scanf(" %d", &account_number) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
       close_account(account_number);
       break;
@@ -93,10 +94,10 @@ int main()
     case 'I':
       printf("Interest rate?: ");
 
-    while (scanf(" %lf", &interest_rate) != 1) //check that it is number
+    if (scanf(" %lf", &interest_rate) != 1) //check that it is number
       {
-        printf("Please enter a number: ");
-        clear();
+        printf("Wrong input!\n");
+        break;
       }
       interest(interest_rate);
       break;

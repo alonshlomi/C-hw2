@@ -8,6 +8,11 @@
 
 double acc_status[NUM_OF_ACCOUNTS][ACC_PARAM];
 
+double set2AfterPoint(double x) {
+    double ans = (int) (x * 100);
+    return (ans / 100.0);
+}
+
 void open_account(double amount)
 {
     int acc;
@@ -59,7 +64,7 @@ void deposit(int account_number, double amount)
     printf("New balance for %d - %.2lf\n",account_number, acc_status[acc][ACC_BALANCE]);
 }
 
-void withdraw(int account_number,double amount)
+void withdrawl(int account_number,double amount)
 {
     int acc = account_number - ACC_NUM;
     if(acc >= NUM_OF_ACCOUNTS || acc < 0 || acc_status[acc][ACC_FLAG] == 0) 
