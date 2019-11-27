@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "myBank.h"
 
 void clear () {
@@ -6,9 +7,13 @@ void clear () {
 }
 
 
+
 int main()
 {
 
+    double d = 35.2342432;
+    double rounded_down = floorf(d * 100) / 100;
+    printf("%f\n",rounded_down );
     char trans_type;
     while (trans_type != 'E')
     {
