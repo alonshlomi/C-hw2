@@ -2,123 +2,120 @@
 #include <math.h>
 #include "myBank.h"
 
-void clear () {
-  while(getchar() != '\n');
+void clear()
+{
+  while (getchar() != '\n')
+    ;
 }
-
-
 
 int main()
 {
-
-    double d = 35.2342432;
-    double rounded_down = floorf(d * 100) / 100;
-    printf("%f\n",rounded_down );
-    char trans_type;
-    while (trans_type != 'E')
+  char trans_type;
+  while (trans_type != 'E')
+  {
+    double amount, interest_rate;
+    int account_number;
+    printf("Transaction type?: ");
+    scanf(" %c", &trans_type);
+    switch (trans_type)
     {
-        double amount,interest_rate;
-        int account_number;
-        printf("Transaction type?: ");
-        scanf(" %c", &trans_type);
-        switch (trans_type)
-        {
-        case 'O':
-            printf("Initial deposit?: ");
-            while(scanf(" %lf",&amount) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
-            open_account(amount);
-            break;
+    case 'O':
+      printf("Initial deposit?: ");
+      if(scanf(" %lf", &amount) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
+      amount = set2AfterPoint(amount);
+      open_account(amount);
+      break;
 
-        case 'B':
-            printf("Account number?: ");
+    case 'B':
+      printf("Account number?: ");
 
-            while(scanf(" %d",&account_number) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
-            check_balance(account_number);
-            break;
+      if (scanf(" %d", &account_number) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
+      check_balance(account_number);
+      break;
 
-        case 'D':
-            printf("Account number?: ");
+    case 'D':
+      printf("Account number?: ");
 
+      if (scanf(" %d", &account_number) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
 
-            while(scanf(" %d",&account_number) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
+      printf("Amount?: ");
 
-            printf("Amount?: ");
+      if (scanf(" %lf", &amount) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
+      amount = set2AfterPoint(amount);
+      deposit(account_number, amount);
+      break;
 
-            while(scanf(" %lf",&amount) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
+    case 'W':
+      printf("Account number?: ");
 
+      if (scanf(" %d", &account_number) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
 
-            deposit(account_number,amount);
-            break;
+      printf("Amount?: ");
 
-        case 'W':
-            printf("Account number?: ");
+      if (scanf(" %lf", &amount) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
+      amount = set2AfterPoint(amount);
+      withdrawl(account_number, amount);
+      break;
 
+    case 'C':
+      printf("Account number?: ");
 
+      if (scanf(" %d", &account_number) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
+      close_account(account_number);
+      break;
 
-            while(scanf(" %d",&account_number) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
+    case 'I':
+      printf("Interest rate?: ");
 
-            printf("Amount?: ");
+    if (scanf(" %lf", &interest_rate) != 1) //check that it is number
+      {
+        printf("Wrong input!\n");
+        break;
+      }
+      interest_rate = set2AfterPoint(interest_rate);
+      interest(interest_rate);
+      break;
 
-            while(scanf(" %lf",&amount) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
-            withdraw(account_number,amount);
-            break;
+    case 'P':
+      print_accounts();
+      break;
 
-        case 'C':
-            printf("Account number?: ");
+    case 'E':
+      printf("Exiting..\n");
+      exit_prog();
+      break;
 
-            while(scanf(" %d",&account_number) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
-            close_account(account_number);
-            break;
-
-        case 'I':
-            printf("Interest rate?: ");
-
-            while(scanf(" %lf",&interest_rate) != 1) //check that it is integer
-            {
-              printf("Please enter an integer: ");
-              clear();
-            }
-            interest(interest_rate);
-            break;
-
-        case 'P':
-            print_accounts();
-            break;
-
-        case 'E':
-            break;
-
-        default:
-            printf("Wrong input!\n");
-            break;
-        }
+    default:
+      printf("Wrong input!\n");
+      break;
     }
+  }
 }

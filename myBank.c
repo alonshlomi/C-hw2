@@ -8,6 +8,11 @@
 
 double acc_status[NUM_OF_ACCOUNTS][ACC_PARAM];
 
+double set2AfterPoint(double x) {
+    double ans = (int) (x * 100);
+    return (ans / 100.0);
+}
+
 void open_account(double amount)
 {
     int acc;
@@ -59,10 +64,10 @@ void deposit(int account_number, double amount)
     printf("New balance for %d - %.2lf\n",account_number, acc_status[acc][ACC_BALANCE]);
 }
 
-void withdraw(int account_number,double amount)
+void withdrawl(int account_number,double amount)
 {
     int acc = account_number - ACC_NUM;
-    if(acc >= NUM_OF_ACCOUNTS || acc < 0 || acc_status[acc][ACC_FLAG] == 0) 
+    if(acc >= NUM_OF_ACCOUNTS || acc < 0 || acc_status[acc][ACC_FLAG] == 0)
     {
         printf("No such account!\n");
         return;
@@ -74,7 +79,7 @@ void withdraw(int account_number,double amount)
 void close_account(int account_number)
 {
     int acc = account_number - ACC_NUM;
-    if(acc >= NUM_OF_ACCOUNTS || acc < 0 || acc_status[acc][ACC_FLAG] == 0) 
+    if(acc >= NUM_OF_ACCOUNTS || acc < 0 || acc_status[acc][ACC_FLAG] == 0)
     {
         printf("No such account!\n");
         return;
@@ -84,15 +89,24 @@ void close_account(int account_number)
     printf("Account %d has been closed successfully\n", account_number);
 }
 
-void interest(double interest_rate) 
+void interest(double interest_rate)
 {
     interest_rate = interest_rate / 100;
     for(int acc=0;acc<NUM_OF_ACCOUNTS;acc++)
     {
-        if(acc_status[acc][ACC_FLAG] == 1) 
+        if(acc_status[acc][ACC_FLAG] == 1)
         {
-            acc_status[acc][ACC_BALANCE] = acc_status[acc][ACC_BALANCE] + acc_status[acc][ACC_BALANCE]*interest_rate;
+            acc_status[acc][ACC_BALANCE] = set2AfterPoint(acc_status[acc][ACC_BALANCE] + acc_status[acc][ACC_BALANCE]*interest_rate);
         }
     }
     printf("The interest was successfully added!\n");
+}
+
+void exit_prog()
+{
+    for(int acc = 0;acc < NUM_OF_ACCOUNTS;acc++)
+    {
+        acc_status[acc][ACC_BALANCE] = 0;
+        acc_status[acc][ACC_FLAG] = 0;
+    }
 }
