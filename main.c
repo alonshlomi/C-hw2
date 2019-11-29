@@ -2,12 +2,6 @@
 #include <math.h>
 #include "myBank.h"
 
-void clear()
-{
-  while (getchar() != '\n')
-    ;
-}
-
 int main()
 {
   char trans_type;
