@@ -1,3 +1,6 @@
+#define NUM_OF_ACCOUNTS 50
+#define ACC_PARAM 2
+extern double acc_status[NUM_OF_ACCOUNTS][ACC_PARAM];
 void open_account(double amount);
 void print_accounts();
 void check_balance(int account_number);
